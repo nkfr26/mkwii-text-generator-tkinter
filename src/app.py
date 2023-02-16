@@ -23,8 +23,8 @@ class App(tk.Tk):
         self.minsize(675, 0)
         self.resizable(False, False)
 
-        if os.path.exists("Fonts/icon.png"):
-            self.iconphoto(True, tk.PhotoImage(file="Fonts/icon.png"))
+        if os.path.exists("src/Fonts/icon.png"):
+            self.iconphoto(True, tk.PhotoImage(file="src/Fonts/icon.png"))
 
         self.canvas = tk.Canvas(self, width=0, height=0, highlightthickness=0)
         self.canvas.pack(anchor=tk.NW, side=tk.LEFT)

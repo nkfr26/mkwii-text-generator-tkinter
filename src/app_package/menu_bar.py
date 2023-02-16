@@ -33,9 +33,9 @@ class MenuBar(tk.Menu):
         master.user_interface.text.bind("<Control-o>", self.unbind_text_ctrl_o)
 
     def open_png_folder(self, event=None):
-        if not os.path.exists("PNG"):
-            os.mkdir("PNG")
-        subprocess.Popen(["explorer", "PNG"])
+        if not os.path.exists("src/PNG"):
+            os.mkdir("src/PNG")
+        subprocess.Popen(["explorer", r"src\PNG"])
 
     def unbind_text_ctrl_o(self, event):
         self.open_png_folder()
@@ -45,21 +45,21 @@ class MenuBar(tk.Menu):
         if not self.master.user_interface.file_names:
             return
 
-        if not os.path.exists("PNG"):
-            os.mkdir("PNG")
+        if not os.path.exists("src/PNG"):
+            os.mkdir("src/PNG")
 
         path_name = filedialog.asksaveasfilename(
-            initialdir="PNG", initialfile=datetime.date.today(),
+            initialdir="src/PNG", initialfile=datetime.date.today(),
             defaultextension="", filetypes=[("PNG", "*.png")],
         )
         if path_name:
             self.master.user_interface.PIL_MKWii_text.save(path_name)
 
     def open_readme_en(self):
-        subprocess.Popen(["C:/Windows/notepad.exe", "README/English.txt"])
+        subprocess.Popen(["C:/Windows/notepad.exe", "src/README/English.txt"])
 
     def open_readme_ja(self):
-        subprocess.Popen(["C:/Windows/notepad.exe", "README/Japanese.txt"])
+        subprocess.Popen(["C:/Windows/notepad.exe", "src/README/Japanese.txt"])
 
     def open_github(self):
         webbrowser.open("https://github.com/NOKKY726/mkwii-text-generator-tkinter/")
