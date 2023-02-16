@@ -1,0 +1,1 @@
+nuitka --mingw64 --follow-imports --onefile --plugin-enable=tk-inter --windows-disable-console --windows-icon-from-ico=icon.ico app.py

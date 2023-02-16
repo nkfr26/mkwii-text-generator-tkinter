@@ -1,0 +1,39 @@
+■ MKWii Text Generator (v1.2)
+Developer: NOKKY (@nkfrom_mkw)
+Special thanks to KZT and Paprika.
+
+
+■ Update History
+2022/4/22 v1.0
+・First Release
+
+2022/6/22 v1.1
+・Add Gradient
+・Add Brightness Control
+・Minor fix
+
+2023/1/30 v1.2
+・Major UI change
+・Change Colorful specification
+・Add Horizontal Gradient
+
+
+■ Description
+Characters that can be used are  A to Z  1 to 9  :  .  +  -  /
+The second fonts are available for 1-9 and - /
+It can be used by enclosing it in single quotation (').
+Space enclosed with ' is one-sixth length of normal space.
+
+Example)
+LAP '1   '  00:23.018
+LAP '2'  00:22.884
+LAP '3'  00:22.872
+
+
+■ Export
+Press File -> Export to save as transparent image. Please use it for thumbnails, etc.
+
+
+■ Keyboard Shortcuts
+Ctrl + O: Open PNG Folder
+Ctrl + E: Export
