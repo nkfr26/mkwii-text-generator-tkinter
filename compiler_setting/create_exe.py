@@ -11,7 +11,7 @@ if compiler not in ["c", "n"]:
 
 Path("../compiler_setting/temp").mkdir()
 for dir_name in ["Fonts", "README"]:
-    shutil.copytree(f"{dir_name}", f"../compiler_setting/temp/{dir_name}")
+    shutil.copytree(dir_name, f"../compiler_setting/temp/{dir_name}")
 
 if compiler == "c":
     Path("../compiler_setting/temp").rename("../compiler_setting/cx_Freeze")
