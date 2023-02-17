@@ -12,10 +12,11 @@
 
 ## Usage
 ```
+cd src
 python -m venv .venv
 .venv/Scripts/activate
 pip install -r requirements.txt
-python -B src/app.py
+python -B app.py
 ```
 
 ## Author

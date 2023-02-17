@@ -1,5 +1,6 @@
-import os
 import re
+from pathlib import Path
+
 import tkinter as tk
 from tkinter import ttk
 from tkinter.scrolledtext import ScrolledText
@@ -7,8 +8,8 @@ from tkinter.scrolledtext import ScrolledText
 from PIL import ImageTk
 
 from app_package.menu_bar import MenuBar
-from app_package.text_generator import TextGenerator
 from app_package.widget import ColorWidget, ColorfulWidget, GradientWidget
+from app_package.text_generator import TextGenerator
 
 
 def main():
@@ -23,8 +24,8 @@ class App(tk.Tk):
         self.minsize(675, 0)
         self.resizable(False, False)
 
-        if os.path.exists("src/Fonts/icon.png"):
-            self.iconphoto(True, tk.PhotoImage(file="src/Fonts/icon.png"))
+        if Path("Fonts/icon.png").exists():
+            self.iconphoto(True, tk.PhotoImage(file="Fonts/icon.png"))
 
         self.canvas = tk.Canvas(self, width=0, height=0, highlightthickness=0)
         self.canvas.pack(anchor=tk.NW, side=tk.LEFT)

@@ -27,9 +27,9 @@ class TextGenerator:
                 continue
 
             if self.selectbox == "Yellow":
-                images.append(Image.open(f"src/Fonts/Yellow/{file_name}.png"))
+                images.append(Image.open(f"Fonts/Yellow/{file_name}.png"))
             else:
-                images.append(Image.open(f"src/Fonts/White/{file_name}.png"))
+                images.append(Image.open(f"Fonts/White/{file_name}.png"))
 
         return images
 
@@ -85,7 +85,7 @@ class TextGenerator:
     def concat_image(self) -> Image:
         images = self.multiply_char()
         y, is_LF = 0, False
-        concated_image = Image.open("src/Fonts/Yellow/SPACE.png")  # エラー防止
+        concated_image = Image.open("Fonts/Yellow/SPACE.png")  # エラー防止
         for i, image in enumerate(images):  # 画像の結合
             if image == "LF":  # 改行処理
                 y += 64
