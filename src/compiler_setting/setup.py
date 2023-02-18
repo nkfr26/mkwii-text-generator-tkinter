@@ -13,7 +13,7 @@ executables = [
     Executable(
         "app.py", base=base,
         target_name="MKWii Text Generator",
-        icon="../compiler_setting/icon.ico",
+        icon="compiler_setting/icon.ico",
     )
 ]
 
