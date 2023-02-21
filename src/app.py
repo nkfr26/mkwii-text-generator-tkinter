@@ -130,14 +130,12 @@ class UserInterface(tk.Frame):
     def change_widget(self, event=None):
         self.nest_widget.grid_forget()
 
-        if self.var_combobox.get() == "Color":
-            self.nest_widget = self.color_widget
-        elif self.var_combobox.get() == "Colorful" and len(self.file_names):
-            self.nest_widget = self.colorful_widget
-        elif self.var_combobox.get() == "Gradient":
-            self.nest_widget = self.gradient_widget
-        else:
-            self.nest_widget = tk.Frame(self)
+        widget_mapping = {
+            "Color": self.color_widget,
+            "Colorful": self.colorful_widget if self.file_names else tk.Frame(self),
+            "Gradient": self.gradient_widget,
+        }
+        self.nest_widget = widget_mapping.get(self.var_combobox.get(), tk.Frame(self))
 
         self.nest_widget.grid(columnspan=2, sticky=tk.W)
 
