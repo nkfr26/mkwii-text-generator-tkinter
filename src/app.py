@@ -98,7 +98,7 @@ class UserInterface(tk.Frame):
             if re.sub("[^-+0-9A-Z\n]", "", file_name)
         ]
         # 右側の空白と改行を削除
-        while len(file_names) and file_names[-1] in ["SPACE", "SPACE_", "\n"]:
+        while file_names and file_names[-1] in ["SPACE", "SPACE_", "\n"]:
             del file_names[-1]
 
         return file_names
@@ -116,11 +116,11 @@ class UserInterface(tk.Frame):
         self.file_names = self.to_file_names(self.text.get("1.0", "end-1c"))
         # 「Colorful」のコンボボックスを更新
         self.colorful_widget.label_combobox.combobox.config(values=self.file_names)
-        if len(self.file_names):
+        if self.file_names:
             self.colorful_widget.label_combobox.combobox.current(0)
             self.colorful_widget.change_colorful_combobox()
 
-        self.change_widget()  # 「Colorful」の「len(self.file_names)」に対応させる
+        self.change_widget()  # 「Colorful」の「if self.file_names」に対応させる
 
     def change_scale(self, event):
         # 輝度の表示
