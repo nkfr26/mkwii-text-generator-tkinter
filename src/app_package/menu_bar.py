@@ -17,8 +17,8 @@ class MenuBar(tk.Menu):
         self.add_cascade(label="File", menu=file)
         self.add_cascade(label="Help", menu=help)
 
-        file.add_command(label="Open PNG Folder", command=self.open_png_folder)
         file.add_command(label="Export", command=self.export)
+        file.add_command(label="Open PNG Folder", command=self.open_png_folder)
 
         help_readme = tk.Menu(help, tearoff=False)
         help_readme.add_command(label="English", command=self.open_readme_en)
@@ -28,21 +28,12 @@ class MenuBar(tk.Menu):
         help.add_command(label="GitHub", command=self.open_github)
         help.add_command(label="Developer's Twitter", command=self.open_twitter)
 
-        master.bind("<Control-o>", self.open_png_folder)
         master.bind("<Control-e>", self.export)
-
+        master.bind("<Control-o>", self.open_png_folder)
         master.user_interface.text.bind("<Control-o>", self.unbind_text_ctrl_o)
 
-    def open_png_folder(self, event=None):
-        Path("PNG").mkdir(exist_ok=True)
-        subprocess.Popen(["explorer", "PNG"])
-
-    def unbind_text_ctrl_o(self, event):
-        self.open_png_folder()
-        return "break"
-
     def export(self, event=None):
-        if not self.master.user_interface.file_names:
+        if not self.master.user_interface.text.file_names:
             return
 
         Path("PNG").mkdir(exist_ok=True)
@@ -53,6 +44,14 @@ class MenuBar(tk.Menu):
         )
         if path_name:
             self.master.user_interface.PIL_MKWii_text.save(path_name)
+
+    def open_png_folder(self, event=None):
+        Path("PNG").mkdir(exist_ok=True)
+        subprocess.run(["explorer", "PNG"])
+
+    def unbind_text_ctrl_o(self, event):
+        self.open_png_folder()
+        return "break"
 
     def open_readme_en(self):
         subprocess.Popen(["C:/Windows/notepad.exe", "README/English.txt"])

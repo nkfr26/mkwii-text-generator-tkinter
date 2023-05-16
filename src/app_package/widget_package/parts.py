@@ -1,68 +1,110 @@
 import tkinter as tk
 from tkinter import ttk
 
-from .color_button import (
-    ColorButton, TopColorButton, BtmColorButton, ColorfulButton
-)
+from .picker import SinglePicker, MultiPicker, TopPicker, BtmPicker
 
 
-class ParentLabelButton(tk.Frame):
+class Base(tk.LabelFrame):
     def __init__(self, master):
         super().__init__(master)
         self.master = master
-
-        self.config(width=115, height=42)
-        self.grid_propagate(False)
-
-        self.label = tk.Label(self)
-        self.label.grid(row=0, padx=2)
-
-
-class ColorLabelButton(ParentLabelButton):
-    def __init__(self, master):
-        super().__init__(master)
-        self.label.config(text="Pick a color")
-
-        self.button = ColorButton(self)
-        self.button.grid(row=1, sticky=tk.W, padx=5)
-
-
-class TopColorLabelButton(ParentLabelButton):
-    def __init__(self, master):
-        super().__init__(master)
-        self.label.config(text="Top")
-
-        self.button = TopColorButton(self)
-        self.button.grid(row=1, sticky=tk.W, padx=5)
-
-
-class BtmColorLabelButton(ParentLabelButton):
-    def __init__(self, master):
-        super().__init__(master)
-        self.label.config(text="Bottom")
-
-        self.button = BtmColorButton(self)
-        self.button.grid(row=1, sticky=tk.W, padx=5)
-
-
-class ColorfulLabelButton(ParentLabelButton):
-    def __init__(self, master):
-        super().__init__(master)
-        self.label.config(text="Pick a color")
-
-        self.button = ColorfulButton(self)
-        self.button.grid(row=1, sticky=tk.W, padx=5)
-
-
-class ColorfulLabelCombobox(tk.Frame):
-    def __init__(self, master):
-        super().__init__(master)
+        self.pack_propagate(False)
         self.config(width=116, height=42)
-        self.grid_propagate(False)
-        self.columnconfigure(0, weight=True)
 
-        label = tk.Label(self, text="Select the character")
-        label.grid(row=0, sticky=tk.W)
 
-        self.combobox = ttk.Combobox(self, justify="center", state="readonly")
-        self.combobox.grid(row=1, sticky=tk.EW)
+class SPFrame(Base):
+    def __init__(self, master):
+        super().__init__(master)
+        self.config(text="Color")
+
+        self.button = SinglePicker(self)
+        self.button.pack(side=tk.LEFT, padx=6)
+
+
+class MPFrame(Base):
+    def __init__(self, master):
+        super().__init__(master)
+        self.config(text="Color")
+
+        self.button = MultiPicker(self)
+        self.button.pack(side=tk.LEFT, padx=6)
+
+
+class MCFrame(Base):
+    def __init__(self, master):
+        super().__init__(master)
+        self.config(text="Character")
+
+        self.combobox = ttk.Combobox(
+            self, justify="center", state="readonly", takefocus=False
+        )
+        self.combobox.pack(fill=tk.X, padx=6)
+
+
+class TPFrame(Base):
+    def __init__(self, master):
+        super().__init__(master)
+        self.config(text="Top")
+
+        self.button = TopPicker(self)
+        self.button.pack(side=tk.LEFT, padx=6)
+
+
+class BPFrame(Base):
+    def __init__(self, master):
+        super().__init__(master)
+        self.config(text="Bottom")
+
+        self.button = BtmPicker(self)
+        self.button.pack(side=tk.LEFT, padx=6)
+
+
+class Orientation(tk.LabelFrame):
+    def __init__(self, master):
+        super().__init__(master)
+        self.master = master
+        self.config(text="Orientation")
+
+        self.value = tk.IntVar()
+        vertical = tk.Radiobutton(
+            self, value=0, text="Vertical",
+            variable=self.value, command=self.on_change, takefocus=False,
+        )
+        vertical.pack(anchor=tk.W)
+        horizontal = tk.Radiobutton(
+            self, value=1, text="Horizontal",
+            variable=self.value, command=self.on_change, takefocus=False,
+        )
+        horizontal.pack(anchor=tk.W)
+
+    def on_change(self):
+        if self.value.get() == 0:
+            self.master.tpframe.config(text="Top")
+            self.master.bpframe.config(text="Bottom")
+        else:
+            self.master.tpframe.config(text="Left")
+            self.master.bpframe.config(text="Right")
+
+        self.master.master.update_canvas()
+
+
+class Mode(tk.LabelFrame):
+    def __init__(self, master):
+        super().__init__(master)
+        self.master = master
+        self.config(text="Mode")
+
+        self.value = tk.IntVar()
+        rgb = tk.Radiobutton(
+            self, value=0, text="RGB",
+            variable=self.value, command=self.on_change, takefocus=False,
+        )
+        rgb.pack(anchor=tk.W)
+        hsl = tk.Radiobutton(
+            self, value=1, text="HSL",
+            variable=self.value, command=self.on_change, takefocus=False,
+        )
+        hsl.pack(anchor=tk.W)
+
+    def on_change(self):
+        self.master.master.update_canvas()

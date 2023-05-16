@@ -1,5 +1,4 @@
 # MKWii Text Generator (Tkinter)
-![Demo](https://user-images.githubusercontent.com/117383835/215345532-b0efff13-67a2-48f4-b9e3-7c14c8dae46f.png)
 
 ## Overview
 [MKWii Text Generator](https://github.com/NOKKY726/mkwii-text-generator/) のデスクトップアプリ版です。
@@ -8,7 +7,8 @@
 - Windows 11
 - Python 3.10.8
 - Tkinter 8.6
-- Pillow 9.4.0
+- Pillow 9.5.0
+- NumPy 1.24.3
 
 ## Usage
 ```

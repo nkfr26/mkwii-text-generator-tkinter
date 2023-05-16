@@ -31,7 +31,7 @@ elif compiler == "n":
     subprocess.run([
         ".venv/Scripts/python.exe", "-m", "nuitka", "--mingw64", "--follow-imports",
         "--onefile", "--plugin-enable=tk-inter", "--windows-disable-console",
-        "--windows-icon-from-ico=compiler_setting/icon.ico", "app.py",
+        "--windows-icon-from-ico=compiler_setting/favicon.ico", "app.py",
     ])
 
     shutil.move("app.exe", "compiler_setting/Nuitka")

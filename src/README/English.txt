@@ -1,37 +1,43 @@
-■ MKWii Text Generator (v1.2)
+■ MKWii Text Generator (v1.3)
 Developer: NOKKY (@nkfrom_mkw)
 Special thanks to KZT and Paprika.
 
 
 ■ Update History
 2022/4/22 v1.0
-・First Release
+・First release
 
 2022/6/22 v1.1
-・Add Gradient
-・Add Brightness Control
-・Minor fix
+・Added gradient function
+・Added brightness control
 
 2023/1/30 v1.2
 ・Major UI change
-・Change Colorful specification
-・Add Horizontal Gradient
+・Changed Colorful specification
+・Added horizontal gradient
+
+2023/5/ v1.3
+・Improved image quality
+・Adjusted character spacing in pixels and <> for fine adjustment
+・Added HSL gradient
+・Added white stroke conversion function
 
 
 ■ Description
-Characters that can be used are  A to Z  1 to 9  :  .  +  -  /
-The second fonts are available for 1-9 and - /
-It can be used by enclosing it in single quotation (').
-Space enclosed with ' is one-sixth length of normal space.
+Characters that can be used are A-Z 1-9 : . + - /
+Second font are available for 1-9 and - /
+They can be used by enclosing them in double quotation marks (").
+Also, space enclosed in " is one-fourth length of normal space.
+Fine adjustment can be done with <>. (> x 5 = " ")
 
-Example)
-LAP '1   '  00:23.018
-LAP '2'  00:22.884
-LAP '3'  00:22.872
+Example
+time 00:00.000
+lap " 1"  00:00.000
+"km/h" sp<<<<<eed
 
 
 ■ Export
-Press File -> Export to save as transparent image. Please use it for thumbnails, etc.
+Press File -> Export to save as transparent image. Please use it for thumbnail, etc.
 
 
 ■ Keyboard Shortcuts

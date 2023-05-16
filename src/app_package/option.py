@@ -1,0 +1,50 @@
+import tkinter as tk
+
+from .widget_package.parts import (
+    SPFrame, MPFrame, MCFrame, TPFrame, BPFrame,
+    Orientation, Mode,
+)
+
+
+class Parent(tk.Frame):
+    def __init__(self, master):
+        super().__init__(master)
+        self.master = master
+
+
+class Single(Parent):
+    def __init__(self, master):
+        super().__init__(master)
+        self.spframe = SPFrame(self)
+        self.spframe.pack()
+
+
+class Multi(Parent):
+    def __init__(self, master):
+        super().__init__(master)
+        self.mpframe = MPFrame(self)
+        self.mpframe.grid(row=0, column=0)
+
+        self.mcframe = MCFrame(self)
+        self.mcframe.grid(row=0, column=1)
+
+        self.mcframe.combobox.bind("<<ComboboxSelected>>", self.on_change)
+
+    def on_change(self, event=None):
+        index = self.mcframe.combobox.current()
+        self.mpframe.button.i = index
+        self.mpframe.button.config(bg=self.mpframe.button.colors[index])
+
+
+class Gradient(Parent):
+    def __init__(self, master):
+        super().__init__(master)
+        self.orientation = Orientation(self)
+        self.orientation.grid(row=0, column=0, sticky=tk.EW)
+        self.mode = Mode(self)
+        self.mode.grid(row=0, column=1, sticky=tk.EW)
+
+        self.tpframe = TPFrame(self)
+        self.tpframe.grid(row=1, column=0)
+        self.bpframe = BPFrame(self)
+        self.bpframe.grid(row=1, column=1)

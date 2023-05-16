@@ -1,70 +1,121 @@
+import re
+
 import tkinter as tk
-
-from .widget_package.parts import (
-    ColorLabelButton, TopColorLabelButton, BtmColorLabelButton,
-    ColorfulLabelButton, ColorfulLabelCombobox,
-)
+from tkinter import ttk
+from tkinter.scrolledtext import ScrolledText
 
 
-class ParentNestWidget(tk.Frame):
+class Text(ScrolledText):
     def __init__(self, master):
         super().__init__(master)
         self.master = master
+        self.file_names = ""
+
+        self.config(width=30, height=6, undo=True)
+        self.focus_set()
+        self.bind("<Tab>", self.tab)
+        self.bind("<Control-a>", self.ctrl_a)
+
+    def tab(self, event):
+        event.widget.tk_focusNext().focus()
+        return "break"
+
+    def ctrl_a(self, event):
+        self.tag_add(tk.SEL, "1.0", "end-1c")
+        return "break"
+
+    def on_change(self, event):
+        # 「file_names」を更新
+        self.file_names = self.to_file_names(self.get("1.0", "end-1c"))
+        # 「Multi Color」のコンボボックスを更新
+        self.master.multi.mcframe.combobox.config(values=self.file_names)
+        if self.file_names:
+            self.master.multi.mcframe.combobox.current(0)
+            self.master.multi.on_change()
+
+        self.master.change_widget()  # 「Multi Color」の「if self.file_names」に対応させる
+
+    def to_file_names(self, text_area) -> list:
+        replace_dict = {":": "COLON", ".": "PERIOD", "/": "SLASH", " ": "SPACE", "<": "LEFT", ">": "RIGHT"}
+        file_names = [replace_dict.get(char, char) for char in text_area.upper()]
+
+        count, need_replace = 0, False  # 「"」間の文字を置換
+        for i, file_name in enumerate(file_names):
+            if file_name == '"' and count < file_names.count('"') // 2:
+                if not need_replace:
+                    need_replace = True
+                else:
+                    need_replace = False
+                    count += 1
+            elif need_replace and file_name in [*map(str, range(10)), "-", "SLASH", "SPACE"]:
+                file_names[i] += "_"
+
+        # 使用できない文字がないか検証
+        file_names = [
+            file_name
+            for file_name in file_names
+            if re.sub("[^-+0-9A-Z<>\n]", "", file_name)
+        ]
+        # 右側の空白と改行を削除
+        while file_names and file_names[-1] in ["SPACE", "SPACE_", "\n", "LEFT", "RIGHT"]:
+            del file_names[-1]
+
+        return file_names
 
 
-class ColorWidget(ParentNestWidget):
+class Scale(tk.LabelFrame):
     def __init__(self, master):
         super().__init__(master)
-        self.label_button = ColorLabelButton(self)
-        self.label_button.grid(row=1, column=0)
+        self.master = master
+        self.pack_propagate(False)
+        self.config(width=174, height=45)
 
-
-class ColorfulWidget(ParentNestWidget):
-    def __init__(self, master):
-        super().__init__(master)
-        self.label_button = ColorfulLabelButton(self)
-        self.label_button.grid(row=1, column=0)
-
-        self.label_combobox = ColorfulLabelCombobox(self)
-        self.label_combobox.grid(row=1, column=1)
-
-        self.label_combobox.combobox.bind(
-            "<<ComboboxSelected>>", self.change_colorful_combobox
+        self.value = tk.IntVar()
+        self.config(text=f" {self.value.get() * 5} ")
+        scale = ttk.Scale(
+            self, orient=tk.HORIZONTAL, from_=-4, to=20,
+            variable=self.value, command=self.on_change, takefocus=False,
         )
+        scale.pack(fill=tk.X, padx=5)
 
-    def change_colorful_combobox(self, event=None):
-        index = self.label_combobox.combobox.current()
-        self.label_button.button.i = index
-        self.label_button.button.config(bg=self.label_button.button.colors[index])
-
-
-class GradientWidget(ParentNestWidget):
-    def __init__(self, master):
-        super().__init__(master)
-        # self.var_radio.get()
-        self.var_radio = tk.IntVar()
-        vertical_radio = tk.Radiobutton(
-            self, value=0, variable=self.var_radio,
-            text="Vertical", command=self.change_label_when_vertical,
-        )
-        vertical_radio.grid(row=0, column=0, sticky=tk.W)
-        horizontal_radio = tk.Radiobutton(
-            self, value=1, variable=self.var_radio,
-            text="Horizontal", command=self.change_label_when_horizontal,
-        )
-        horizontal_radio.grid(row=0, column=1, sticky=tk.W)
-
-        self.left_label_button = TopColorLabelButton(self)
-        self.left_label_button.grid(row=1, column=0)
-        self.right_label_button = BtmColorLabelButton(self)
-        self.right_label_button.grid(row=1, column=1)
-
-    def change_label_when_vertical(self):
+    def on_change(self, event):
+        # 輝度の表示
+        self.config(text=f" {self.value.get() * 5} ")
         self.master.update_canvas()
-        self.left_label_button.label.config(text="Top")
-        self.right_label_button.label.config(text="Bottom")
 
-    def change_label_when_horizontal(self):
+
+class Checkbutton(tk.LabelFrame):
+    def __init__(self, master):
+        super().__init__(master)
+        self.master = master
+        self.config(text="Stroke", width=58)
+
+        self.value = tk.StringVar()
+        self.value.set(0)
+        checkbutton = ttk.Checkbutton(
+            self, text="White",
+            variable=self.value, command=self.on_change, takefocus=False,
+        )
+        checkbutton.place(x=0, y=1)#ack(side=tk.LEFT)
+
+    def on_change(self):
         self.master.update_canvas()
-        self.left_label_button.label.config(text="Left")
-        self.right_label_button.label.config(text="Right")
+        if int(self.value.get()):
+            self.master.master.sub.config(bg="#202020")
+            self.master.master.sub.canvas.config(bg="#202020")
+        else:
+            self.master.master.sub.config(bg="SystemButtonFace")
+            self.master.master.sub.canvas.config(bg="SystemButtonFace")
+
+
+class Combobox(ttk.Combobox):
+    def __init__(self, master):
+        super().__init__(master)
+        self.value = tk.StringVar()
+        self.config(
+            justify="center", state="readonly",
+            textvariable=self.value, takefocus=False,
+            values=("Yellow", "White", "Single Color", "Multi Color", "Gradient"),
+        )
+        self.current(0)
+        self.bind("<<ComboboxSelected>>", master.change_widget)
