@@ -8,7 +8,7 @@ class Base(tk.LabelFrame):
     def __init__(self, master):
         super().__init__(master)
         self.master = master
-        self.pack_propagate(False)
+        self.propagate(False)
         self.config(width=116, height=42)
 
 

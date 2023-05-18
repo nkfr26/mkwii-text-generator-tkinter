@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from .widget_package.parts import (
+from .option_package.parts import (
     SPFrame, MPFrame, MCFrame, TPFrame, BPFrame,
     Orientation, Mode,
 )

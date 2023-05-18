@@ -2,6 +2,7 @@ import sys
 
 from cx_Freeze import Executable, setup
 
+
 # python setup.py build
 # Dependencies are automatically detected, but it might need fine tuning.
 
@@ -11,9 +12,9 @@ base = "Win32GUI" if sys.platform == "win32" else None
 
 executables = [
     Executable(
-        "app.py", base=base,
+        "src/__main__.py", base=base,
         target_name="MKWii Text Generator",
-        icon="compiler_setting/favicon.ico",
+        icon="stand_alone/favicon.ico",
     )
 ]
 

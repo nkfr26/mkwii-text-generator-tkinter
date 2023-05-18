@@ -1,2 +1,8 @@
-/src/.venv/
-/src/PNG/
+/.venv/
+
+/PNG/
+
+/src/__pycache__/
+
+/stand_alone/cx_Freeze/
+/stand_alone/Nuitka/

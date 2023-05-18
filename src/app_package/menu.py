@@ -7,7 +7,7 @@ import tkinter as tk
 from tkinter import filedialog
 
 
-class MenuBar(tk.Menu):
+class Menu(tk.Menu):
     def __init__(self, master):
         super().__init__(master)
         self.master = master

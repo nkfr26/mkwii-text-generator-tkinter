@@ -2,11 +2,11 @@ import tkinter as tk
 
 from PIL import ImageTk
 
-from app_package.menu_bar import MenuBar
-from app_package.sub import Sub
-from app_package.widget import Text, Scale, Checkbutton, Combobox
-from app_package.option import Single, Multi, Gradient
-from app_package.text_image_generator import TextImageGenerator
+from .app_package.menu import Menu
+from .app_package.sub import Sub
+from .app_package.widget import Text, Scale, Checkbutton, Combobox
+from .app_package.option import Single, Multi, Gradient
+from .app_package.text_image_generator import TextImageGenerator
 
 
 def main():
@@ -23,7 +23,7 @@ class App(tk.Tk):
         self.user_interface = UserInterface(self)
         self.user_interface.pack(anchor=tk.NE, padx=2, pady=2)
 
-        menu = MenuBar(self)
+        menu = Menu(self)
         self.config(menu=menu)
 
         self.sub = Sub(self)
@@ -60,7 +60,7 @@ class UserInterface(tk.Frame):
 
     def create_option(self):
         self.option = tk.Frame(self)
-        self.option.grid(columnspan=2)
+        self.option.grid()
 
         self.single = Single(self)
         self.multi = Multi(self)
@@ -84,11 +84,11 @@ class UserInterface(tk.Frame):
         self.PIL_MKWii_text = text_image_generator.generate_image()
         self.Tk_MKWii_text = ImageTk.PhotoImage(self.PIL_MKWii_text)
 
-        sub_created = False
+        sub_redrawn = False
         if not self.master.sub.exists:
             self.master.sub.deiconify()
             self.text.focus_set()
-            self.master.sub.exists = sub_created = True
+            sub_redrawn = self.master.sub.exists = True
 
         self.master.sub.canvas.config(
             width=self.Tk_MKWii_text.width(), height=self.Tk_MKWii_text.height()
@@ -97,7 +97,7 @@ class UserInterface(tk.Frame):
             0, 0, anchor=tk.NW, image=self.Tk_MKWii_text
         )
 
-        if sub_created:
+        if sub_redrawn:
             self.master.sub.adjust_position()
 
 

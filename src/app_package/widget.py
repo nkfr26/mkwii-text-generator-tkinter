@@ -67,7 +67,7 @@ class Scale(tk.LabelFrame):
     def __init__(self, master):
         super().__init__(master)
         self.master = master
-        self.pack_propagate(False)
+        self.propagate(False)
         self.config(width=174, height=45)
 
         self.value = tk.IntVar()
@@ -96,7 +96,7 @@ class Checkbutton(tk.LabelFrame):
             self, text="White",
             variable=self.value, command=self.on_change, takefocus=False,
         )
-        checkbutton.place(x=0, y=1)#ack(side=tk.LEFT)
+        checkbutton.place(x=0, y=1)
 
     def on_change(self):
         self.master.update_canvas()

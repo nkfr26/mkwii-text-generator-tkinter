@@ -1,7 +1,7 @@
 import numpy as np
 from PIL import Image, ImageChops, ImageEnhance
 
-from . import gradient
+from .generator_package import gradient
 
 
 class TextImageGenerator:
@@ -40,9 +40,9 @@ class TextImageGenerator:
                 continue
 
             if self.selectbox == "Yellow":
-                images.append(Image.open(f"Fonts/Yellow/{file_name}.png"))
+                images.append(Image.open(f"fonts/yellow/{file_name}.png"))
             else:
-                images.append(Image.open(f"Fonts/White/{file_name}.png"))
+                images.append(Image.open(f"fonts/white/{file_name}.png"))
 
         return images
 
@@ -78,7 +78,7 @@ class TextImageGenerator:
     def concat_images(self) -> Image:
         images = self.multiply_char()
         y, is_LF = 0, False
-        concated_image = Image.open("Fonts/Yellow/SPACE.png")  # エラー防止
+        concated_image = Image.open("fonts/yellow/SPACE.png")  # エラー防止
         for i, image in enumerate(images):  # 画像の結合
             if image == "LF":  # 改行処理
                 y += 88
