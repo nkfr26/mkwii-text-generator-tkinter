@@ -28,8 +28,6 @@ class Multi(Parent):
         self.mcframe = MCFrame(self)
         self.mcframe.grid(row=0, column=1)
 
-        self.mcframe.combobox.bind("<<ComboboxSelected>>", self.on_change)
-
     def on_change(self, event=None):
         index = self.mcframe.combobox.current()
         self.mpframe.button.i = index

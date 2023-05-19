@@ -39,6 +39,7 @@ class MCFrame(Base):
             self, justify="center", state="readonly", takefocus=False
         )
         self.combobox.pack(fill=tk.X, padx=6)
+        self.combobox.bind("<<ComboboxSelected>>", master.on_change)
 
 
 class TPFrame(Base):

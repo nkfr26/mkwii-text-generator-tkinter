@@ -10,7 +10,7 @@ if compiler not in ["c", "n"]:
     exit()
 
 Path("stand_alone/temp").mkdir()
-for dir_name in ["fonts", "README"]:
+for dir_name in ["Fonts", "README"]:
     shutil.copytree(dir_name, f"stand_alone/temp/{dir_name}")
 
 if compiler == "c":
