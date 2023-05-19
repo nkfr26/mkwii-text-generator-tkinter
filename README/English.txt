@@ -24,20 +24,20 @@ Special thanks to KZT and Paprika.
 
 
 ■ Description
-Characters that can be used are A-Z 1-9 : . + - /
-Second font are available for 1-9 and - /
-They can be used by enclosing them in double quotation marks (").
-Also, space enclosed in " is one-fourth length of normal space.
-Fine adjustment can be done with <>. (> x 5 = " ")
+The characters that can be used are A-Z 1-9 : . + - /
+The second font is provided for 1-9 - / and can be used by enclosing them in double quotes ("").
+Also, the space enclosed in double quotes is a quarter length of the normal space.
+Fine adjustment can be done with <> (> x 5 = " ")
 
-Example
+
+■ Input Example
 time 00:00.000
 lap " 1"  00:00.000
 "km/h" sp<<<<<eed
 
 
 ■ Export
-Press File -> Export to save as transparent image. Please use it for thumbnail, etc.
+Press File -> Export to save as a transparent image. Please use it for thumbnail, etc.
 
 
 ■ Keyboard Shortcuts

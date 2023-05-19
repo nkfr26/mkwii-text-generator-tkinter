@@ -5,7 +5,7 @@ from PIL import Image, ImageColor, ImageDraw
 
 
 def new(mode, size, color1, color2, orientation) -> Image:
-    im = Image.new('RGBA', size)
+    im = Image.new("RGBA", size)
     draw = ImageDraw.Draw(im)
 
     width, height = size
@@ -24,14 +24,19 @@ def new(mode, size, color1, color2, orientation) -> Image:
 
     return im
 
+
 def calc_color(mode, position, color1, color2) -> tuple:
     if isinstance(color1, str):
         color1, color2 = [ImageColor.getrgb(item) for item in [color1, color2]]
 
     if mode == "RGB":
-        return tuple([int(color1[i] + (color2[i] - color1[i]) * position) for i in range(3)])
+        return tuple(
+            [int(color1[i] + (color2[i] - color1[i]) * position) for i in range(3)]
+        )
     elif mode == "HSL":
-        color1, color2 = [rgb_to_hls(*[i / 255 for i in item]) for item in [color1, color2]]
+        color1, color2 = [
+            rgb_to_hls(*[i / 255 for i in item]) for item in [color1, color2]
+        ]
         delta = [j - i for i, j in zip(color1, color2)]
         delta[0] -= math.floor(delta[0] + 0.5)
         hls = [i + j * position for i, j in zip(color1, delta)]

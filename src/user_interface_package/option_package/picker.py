@@ -8,9 +8,7 @@ class Picker(tk.Button):
         self.master = master
 
         self.image = tk.PhotoImage(width=12, height=12)
-        self.config(
-            image=self.image, command=self.on_change, takefocus=False
-        )
+        self.config(image=self.image, command=self.on_change, takefocus=False)
 
     def on_change(self):  # オーバーライドする
         pass

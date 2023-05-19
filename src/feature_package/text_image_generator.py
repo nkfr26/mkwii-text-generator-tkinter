@@ -29,7 +29,7 @@ class TextImageGenerator:
         if not self.should_invert:
             return color
 
-        r, g, b = [255 - int(color[i:i + 2], 16) for i in range(1, 6, 2)]
+        r, g, b = [255 - int(color[i : i + 2], 16) for i in range(1, 6, 2)]
         return f"#{r:02x}{g:02x}{b:02x}"
 
     def create_images(self) -> list:
@@ -69,7 +69,10 @@ class TextImageGenerator:
         }
         image_width += position_mapping.get(file_name, 0)
 
-        if not file_name in [*map(str, range(10)), "COLON", "PERIOD", "SPACE", "SPACE_", "LEFT", "RIGHT"]:
+        if not file_name in [
+            *map(str, range(10)),
+            "COLON", "PERIOD", "SPACE", "SPACE_", "LEFT", "RIGHT",
+        ]:
             image_width -= 16
 
         x += image_width
@@ -119,9 +122,7 @@ class TextImageGenerator:
             return concated_image
 
         if self.selectbox == "Single Color":
-            image2 = Image.new(
-                "RGBA", concated_image.size, self.color
-            )
+            image2 = Image.new("RGBA", concated_image.size, self.color)
         elif self.selectbox == "Gradient":
             image2 = gradient.new(
                 self.mode, concated_image.size,

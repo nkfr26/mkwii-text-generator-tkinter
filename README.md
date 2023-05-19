@@ -18,6 +18,11 @@ pip install -r requirements.txt
 python -m src
 ```
 
+## The creation of executables
+```
+python stand_alone/create_exe.py
+```
+
 ## Author
 [Twitter](https://twitter.com/nkfrom_mkw/)
 

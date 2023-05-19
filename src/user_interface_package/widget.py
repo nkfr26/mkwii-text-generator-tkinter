@@ -36,7 +36,9 @@ class Text(ScrolledText):
         self.master.change_widget()  # 「Multi Color」の「if self.file_names」に対応させる
 
     def to_file_names(self, text_area) -> list:
-        replace_dict = {":": "COLON", ".": "PERIOD", "/": "SLASH", " ": "SPACE", "<": "LEFT", ">": "RIGHT"}
+        replace_dict = {
+            ":": "COLON", ".": "PERIOD", "/": "SLASH", " ": "SPACE", "<": "LEFT", ">": "RIGHT"
+        }
         file_names = [replace_dict.get(char, char) for char in text_area.upper()]
 
         count, need_replace = 0, False  # 「"」間の文字を置換
