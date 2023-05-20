@@ -37,7 +37,6 @@ class Menu(tk.Menu):
             return
 
         Path("PNG").mkdir(exist_ok=True)
-
         path_name = filedialog.asksaveasfilename(
             initialdir="PNG", initialfile=datetime.date.today(),
             defaultextension="", filetypes=[("PNG", "*.png")],

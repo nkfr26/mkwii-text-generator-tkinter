@@ -1,7 +1,7 @@
 import math
 from colorsys import rgb_to_hls, hls_to_rgb
 
-from PIL import Image, ImageColor, ImageDraw
+from PIL import Image, ImageDraw, ImageColor
 
 
 def new(mode, size, color1, color2, orientation) -> Image:

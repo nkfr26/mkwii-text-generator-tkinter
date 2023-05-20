@@ -7,7 +7,7 @@ from . import gradient
 class TextImageGenerator:
     def __init__(self, user_interface) -> None:
         self.file_names = user_interface.text.file_names
-        self.slider = user_interface.scale.value.get() / 10 + 1
+        self.slider = user_interface.scale.value.get() / 10 + 1  # 0.6～3.0 (0.1刻み)
         self.selectbox = user_interface.combobox.value.get()
 
         orientation_value = user_interface.gradient.orientation.value.get()
@@ -136,9 +136,9 @@ class TextImageGenerator:
         if not self.should_invert:
             return multiplied_image
 
-        im_arr = np.array(multiplied_image)
-        im_arr[:, :, :3] = 255 - im_arr[:, :, :3]
-        inverted_image = Image.fromarray(im_arr)
+        im_array = np.array(multiplied_image)
+        im_array[:, :, :3] = 255 - im_array[:, :, :3]
+        inverted_image = Image.fromarray(im_array)
 
         # width, height = multiplied_image.size
         # inverted_image = Image.new("RGBA", (width, height))

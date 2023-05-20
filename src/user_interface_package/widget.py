@@ -73,7 +73,7 @@ class Scale(tk.LabelFrame):
         self.config(width=174, height=45)
 
         self.value = tk.IntVar()
-        self.config(text=f" {self.value.get() * 5} ")
+        self.config(text=f" {self.value.get() * 5} ")  # 輝度の表示 (5刻み)
         scale = ttk.Scale(
             self, orient=tk.HORIZONTAL, from_=-4, to=20,
             variable=self.value, command=self.on_change, takefocus=False,
@@ -81,7 +81,6 @@ class Scale(tk.LabelFrame):
         scale.pack(fill=tk.X, padx=5)
 
     def on_change(self, event):
-        # 輝度の表示
         self.config(text=f" {self.value.get() * 5} ")
         self.master.update_canvas()
 

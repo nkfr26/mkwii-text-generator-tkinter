@@ -16,7 +16,7 @@ Special thanks to KZT and Paprika.
 ・Changed Colorful specification
 ・Added horizontal gradient
 
-2023/5/ v1.3
+2023/5/20 v1.3
 ・Improved image quality
 ・Adjusted character spacing in pixels and <> for fine adjustment
 ・Added HSL gradient

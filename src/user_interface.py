@@ -15,7 +15,7 @@ class UserInterface(tk.Frame):
         # self.text.file_names
         self.text = Text(self)
         self.text.grid(columnspan=2, sticky=tk.EW)
-        master.bind("<Key>", self.text.on_change)  # キー入力で実行する
+        master.bind("<Key>", self.text.on_change)
         master.bind("<Alt-F4>", lambda event: None)
 
         # self.scale.value.get() / 10 + 1

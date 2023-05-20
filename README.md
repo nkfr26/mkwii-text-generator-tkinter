@@ -1,4 +1,5 @@
 # MKWii Text Generator (Tkinter)
+![Demo](https://github.com/NOKKY726/mkwii-text-generator-tkinter/assets/117383835/5187294a-cf14-4074-835a-326801f77232)
 
 ## Overview
 [MKWii Text Generator](https://github.com/NOKKY726/mkwii-text-generator/) のデスクトップアプリ版です。
