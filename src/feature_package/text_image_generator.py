@@ -64,13 +64,14 @@ class TextImageGenerator:
         # time 00:00.000, lap " 1"  , "km/h"
         position_mapping = {
             "T": -5, "I": +2, "M": -1, "L": +2, "A": +8, "P": +1,
-            "COLON": -1, "PERIOD": -2, "K": +1, "Z": -4, "Q": +4,
+            "COLON": -1, "PERIOD": -1, "K": +1, "Z": -4, "Q": +4,
             "F": -5, "V": -5, "W": -6, "Y": -8, "C": -5, "G": -2, "LEFT": -2,
         }
         image_width += position_mapping.get(file_name, 0)
 
-        if not file_name in [
-            *map(str, range(10)),
+        if file_name in map(str, range(10)):
+            image_width -= 1
+        elif not file_name in [
             "COLON", "PERIOD", "SPACE", "SPACE_", "LEFT", "RIGHT",
         ]:
             image_width -= 16

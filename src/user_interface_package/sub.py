@@ -8,7 +8,7 @@ class Sub(tk.Toplevel):
         self.exists = True
 
         self.title("MKWii Text Generator")
-        self.minsize(742, 176)
+        self.minsize(738, 176)
         self.resizable(False, False)
         self.protocol("WM_DELETE_WINDOW", self.close)
 
