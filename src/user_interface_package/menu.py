@@ -5,6 +5,7 @@ from pathlib import Path
 
 import tkinter as tk
 from tkinter import filedialog
+from tkinter.colorchooser import askcolor
 
 
 class Menu(tk.Menu):
@@ -14,8 +15,10 @@ class Menu(tk.Menu):
 
         file = tk.Menu(self, tearoff=False)
         help = tk.Menu(self, tearoff=False)
+        bg = tk.Menu(self, tearoff=False)
         self.add_cascade(label="File", menu=file)
         self.add_cascade(label="Help", menu=help)
+        self.add_cascade(label="Background", menu=bg)
 
         file.add_command(label="Export", command=self.export)
         file.add_command(label="Open PNG Folder", command=self.open_png_folder)
@@ -28,9 +31,12 @@ class Menu(tk.Menu):
         help.add_command(label="GitHub", command=self.open_github)
         help.add_command(label="Developer's Twitter", command=self.open_twitter)
 
+        self.bg_lock = tk.BooleanVar()
+        bg.add_command(label="Change Color", command=self.change_bg_color)
+        bg.add_checkbutton(label="Lock", variable=self.bg_lock)
+
         master.bind("<Control-e>", self.export)
         master.bind("<Control-o>", self.open_png_folder)
-        master.user_interface.text.bind("<Control-o>", self.unbind_text_ctrl_o)
 
     def export(self, event=None):
         if not self.master.user_interface.text.file_names:
@@ -48,9 +54,10 @@ class Menu(tk.Menu):
         Path("PNG").mkdir(exist_ok=True)
         subprocess.run(["explorer", "PNG"])
 
-    def unbind_text_ctrl_o(self, event):
-        self.open_png_folder()
-        return "break"
+    def change_bg_color(self):
+        bg_color = askcolor(self.master.sub.cget("bg"))[1]
+        self.master.sub.config(bg=bg_color)
+        self.master.sub.canvas.config(bg=bg_color)
 
     def open_readme_en(self):
         subprocess.Popen(["C:/Windows/notepad.exe", "README/English.txt"])

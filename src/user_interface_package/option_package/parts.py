@@ -18,7 +18,7 @@ class SPFrame(Base):
         self.config(text="Color")
 
         self.button = SinglePicker(self)
-        self.button.pack(side=tk.LEFT, padx=6)
+        self.button.place(x=6, y=1)
 
 
 class MPFrame(Base):
@@ -27,7 +27,7 @@ class MPFrame(Base):
         self.config(text="Color")
 
         self.button = MultiPicker(self)
-        self.button.pack(side=tk.LEFT, padx=6)
+        self.button.place(x=6, y=1)
 
 
 class MCFrame(Base):
@@ -38,7 +38,7 @@ class MCFrame(Base):
         self.combobox = ttk.Combobox(
             self, justify="center", state="readonly", takefocus=False
         )
-        self.combobox.pack(fill=tk.X, padx=6)
+        self.combobox.pack(padx=6)
         self.combobox.bind("<<ComboboxSelected>>", master.on_change)
 
 
@@ -48,7 +48,7 @@ class TPFrame(Base):
         self.config(text="Top")
 
         self.button = TopPicker(self)
-        self.button.pack(side=tk.LEFT, padx=6)
+        self.button.place(x=6, y=1)
 
 
 class BPFrame(Base):
@@ -57,7 +57,7 @@ class BPFrame(Base):
         self.config(text="Bottom")
 
         self.button = BtmPicker(self)
-        self.button.pack(side=tk.LEFT, padx=6)
+        self.button.place(x=6, y=1)
 
 
 class Orientation(tk.LabelFrame):

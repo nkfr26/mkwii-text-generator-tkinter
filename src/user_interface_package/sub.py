@@ -15,10 +15,6 @@ class Sub(tk.Toplevel):
         self.canvas = tk.Canvas(self, width=0, height=0, highlightthickness=0)
         self.canvas.pack(anchor=tk.NW, padx=2, pady=2)
 
-        if int(master.user_interface.checkbutton.value.get()):
-            self.config(bg="#202020")
-            self.canvas.config(bg="#202020")
-
     def close(self):
         self.exists = False
         self.withdraw()

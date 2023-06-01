@@ -19,10 +19,10 @@ class App(tk.Tk):
         self.user_interface = UserInterface(self)
         self.user_interface.pack(anchor=tk.NE, padx=2, pady=2)
 
-        menu = Menu(self)
-        self.config(menu=menu)
+        self.menu = Menu(self)
+        self.config(menu=self.menu)
 
         self.sub = Sub(self)
-        self.sub.bind("<Control-e>", menu.export)
-        self.sub.bind("<Control-o>", menu.open_png_folder)
         self.sub.adjust_position()
+        self.sub.bind("<Control-e>", self.menu.export)
+        self.sub.bind("<Control-o>", self.menu.open_png_folder)

@@ -40,22 +40,22 @@ class UserInterface(tk.Frame):
         self.multi = Multi(self)
         self.gradient = Gradient(self)
 
-    def change_widget(self, event=None):
+    def change_option(self, event=None):
         self.option.grid_forget()
 
-        widget_mapping = {
+        option_mapping = {
             "Single Color": self.single,
             "Multi Color": self.multi if self.text.file_names else tk.Frame(self),
             "Gradient": self.gradient,
         }
-        self.option = widget_mapping.get(self.combobox.value.get(), tk.Frame(self))
+        self.option = option_mapping.get(self.combobox.value.get(), tk.Frame(self))
         self.option.grid(columnspan=2, sticky=tk.W)
 
         self.update_canvas()
 
     def update_canvas(self):
         text_image_generator = TextImageGenerator(self)
-        self.PIL_MKWii_text = text_image_generator.generate_image()
+        self.PIL_MKWii_text = text_image_generator.run()
         self.Tk_MKWii_text = ImageTk.PhotoImage(self.PIL_MKWii_text)
 
         sub_redrawn = False

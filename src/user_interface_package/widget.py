@@ -15,6 +15,7 @@ class Text(ScrolledText):
         self.focus_set()
         self.bind("<Tab>", self.tab)
         self.bind("<Control-a>", self.ctrl_a)
+        self.bind("<Control-o>", self.ctrl_o)
 
     def tab(self, event):
         event.widget.tk_focusNext().focus()
@@ -24,6 +25,10 @@ class Text(ScrolledText):
         self.tag_add(tk.SEL, "1.0", "end-1c")
         return "break"
 
+    def ctrl_o(self, event):
+        self.master.master.menu.open_png_folder()
+        return "break"  # 改行しないようにする
+
     def on_change(self, event):
         # 「file_names」を更新
         self.file_names = self.to_file_names(self.get("1.0", "end-1c"))
@@ -32,8 +37,8 @@ class Text(ScrolledText):
         if self.file_names:
             self.master.multi.mcframe.combobox.current(0)
             self.master.multi.on_change()
-
-        self.master.change_widget()  # 「Multi Color」の「if self.file_names」に対応させる
+        # 「Multi Color」の「if self.file_names」に対応させる
+        self.master.change_option()
 
     def to_file_names(self, text_area) -> list:
         replace_dict = {
@@ -91,8 +96,7 @@ class Checkbutton(tk.LabelFrame):
         self.master = master
         self.config(text="Stroke", width=58)
 
-        self.value = tk.StringVar()
-        self.value.set(0)
+        self.value = tk.BooleanVar()
         checkbutton = ttk.Checkbutton(
             self, text="White",
             variable=self.value, command=self.on_change, takefocus=False,
@@ -101,7 +105,10 @@ class Checkbutton(tk.LabelFrame):
 
     def on_change(self):
         self.master.update_canvas()
-        if int(self.value.get()):
+
+        if self.master.master.menu.bg_lock.get():
+            pass
+        elif self.value.get():
             self.master.master.sub.config(bg="#202020")
             self.master.master.sub.canvas.config(bg="#202020")
         else:
@@ -119,4 +126,4 @@ class Combobox(ttk.Combobox):
             values=("Yellow", "White", "Single Color", "Multi Color", "Gradient"),
         )
         self.current(0)
-        self.bind("<<ComboboxSelected>>", master.change_widget)
+        self.bind("<<ComboboxSelected>>", master.change_option)
