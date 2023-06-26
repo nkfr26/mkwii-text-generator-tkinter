@@ -61,7 +61,7 @@ class TextImageGenerator:
         return images
 
     def adjust_x_coordinate(self, x, image_width, file_name) -> int:
-        # time 00:00.000, lap " 1"  , "km/h"
+        # time 00:00.000, lap " 1"  , "km/h", etc.
         position_mapping = {
             "T": -5, "I": +2, "M": -1, "L": +2, "A": +8, "P": +1,
             "COLON": -1, "PERIOD": -1, "K": +1, "X": -6, "Q": +4,
@@ -90,31 +90,20 @@ class TextImageGenerator:
                 is_LF = True
                 continue
 
-            if i == 0 or is_LF:
+            if i == 0 or is_LF:  # 一文字目 or 改行直後
                 x = 0
-                image_width = image.width
-                file_name = self.file_names[i]
-                if i == 0:  # 1文字目
-                    concated_image = image
-                elif is_LF:  # 改行直後
-                    bg = Image.new(
-                        "RGBA", (max(concated_image.width, image_width), y + 84)
-                    )
-                    bg.paste(concated_image)
-                    bg.paste(image, (0, y))
-                    concated_image = bg
-                    is_LF = False
-            else:
+                is_LF = False
+            else:  # 直前の文字を用いて「x」を求める
                 x = self.adjust_x_coordinate(x, image_width, file_name)
-                image_width = image.width
-                file_name = self.file_names[i]
-                bg = Image.new(
-                    "RGBA", (max(concated_image.width, x + image_width), y + 84)
-                )
-                bg.paste(concated_image)
-                fg = Image.new("RGBA", bg.size)
-                fg.paste(image, (x, y))
-                concated_image = Image.alpha_composite(bg, fg)
+
+            image_width = image.width
+            file_name = self.file_names[i]
+
+            bg = Image.new("RGBA", (max(x + image_width, concated_image.width), y + 84))
+            bg.paste(concated_image)
+            fg = Image.new("RGBA", bg.size)
+            fg.paste(image, (x, y))
+            concated_image = Image.alpha_composite(bg, fg)
 
         return concated_image
 

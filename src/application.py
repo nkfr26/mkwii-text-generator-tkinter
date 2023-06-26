@@ -1,16 +1,16 @@
 import tkinter as tk
 
 from .user_interface import UserInterface
-from .user_interface_package.menu import Menu
-from .user_interface_package.sub import Sub
+from .app.menu import Menu
+from .app.sub import Sub
 
 
 def main():
-    app = App()
-    app.mainloop()
+    application = Application()
+    application.mainloop()
 
 
-class App(tk.Tk):
+class Application(tk.Tk):
     def __init__(self):
         super().__init__()
         self.title("")

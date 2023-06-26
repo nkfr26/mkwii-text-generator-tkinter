@@ -2,9 +2,9 @@ import tkinter as tk
 
 from PIL import ImageTk
 
-from .user_interface_package.widget import Text, Scale, Checkbutton, Combobox
-from .user_interface_package.option import Single, Multi, Gradient
-from .feature_package.text_image_generator import TextImageGenerator
+from .ui.widget import Text, Scale, Checkbutton, Combobox
+from .ui.option import Single, Multi, Gradient
+from .feature.text_image_generator import TextImageGenerator
 
 
 class UserInterface(tk.Frame):
