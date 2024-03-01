@@ -11,7 +11,6 @@ from tkinter.colorchooser import askcolor
 class Menu(tk.Menu):
     def __init__(self, master):
         super().__init__(master)
-        self.master = master
 
         file = tk.Menu(self, tearoff=False)
         help = tk.Menu(self, tearoff=False)

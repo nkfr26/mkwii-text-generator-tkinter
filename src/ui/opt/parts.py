@@ -7,7 +7,6 @@ from .picker import SinglePicker, MultiPicker, TopPicker, BtmPicker
 class Base(tk.LabelFrame):
     def __init__(self, master):
         super().__init__(master)
-        self.master = master
         self.propagate(False)
         self.config(width=116, height=42)
 
@@ -63,7 +62,6 @@ class BPFrame(Base):
 class Orientation(tk.LabelFrame):
     def __init__(self, master):
         super().__init__(master)
-        self.master = master
         self.config(text="Orientation")
 
         self.value = tk.IntVar()
@@ -92,7 +90,6 @@ class Orientation(tk.LabelFrame):
 class Mode(tk.LabelFrame):
     def __init__(self, master):
         super().__init__(master)
-        self.master = master
         self.config(text="Mode")
 
         self.value = tk.IntVar()

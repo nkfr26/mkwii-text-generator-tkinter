@@ -4,7 +4,6 @@ import tkinter as tk
 class Sub(tk.Toplevel):
     def __init__(self, master):
         super().__init__(master)
-        self.master = master
         self.exists = True
 
         self.title("MKWii Text Generator")

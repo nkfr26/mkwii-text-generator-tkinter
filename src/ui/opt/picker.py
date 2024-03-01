@@ -5,7 +5,6 @@ from tkinter.colorchooser import askcolor
 class Picker(tk.Button):
     def __init__(self, master):
         super().__init__(master)
-        self.master = master
 
         self.image = tk.PhotoImage(width=12, height=12)
         self.config(image=self.image, command=self.on_change, takefocus=False)

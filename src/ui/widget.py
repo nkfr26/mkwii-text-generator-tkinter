@@ -8,7 +8,7 @@ from tkinter.scrolledtext import ScrolledText
 class Text(ScrolledText):
     def __init__(self, master):
         super().__init__(master)
-        self.master = master
+        self.master = master  # バグ？
         self.file_names = ""
 
         self.config(width=30, height=6, undo=True)
@@ -73,7 +73,6 @@ class Text(ScrolledText):
 class Scale(tk.LabelFrame):
     def __init__(self, master):
         super().__init__(master)
-        self.master = master
         self.propagate(False)
         self.config(width=174, height=45)
 
@@ -93,7 +92,6 @@ class Scale(tk.LabelFrame):
 class Checkbutton(tk.LabelFrame):
     def __init__(self, master):
         super().__init__(master)
-        self.master = master
         self.config(text="Stroke", width=58)
 
         self.value = tk.BooleanVar()

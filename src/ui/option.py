@@ -6,20 +6,14 @@ from .opt.parts import (
 )
 
 
-class Parent(tk.Frame):
-    def __init__(self, master):
-        super().__init__(master)
-        self.master = master
-
-
-class Single(Parent):
+class Single(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.spframe = SPFrame(self)
         self.spframe.pack()
 
 
-class Multi(Parent):
+class Multi(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.mpframe = MPFrame(self)
@@ -34,7 +28,7 @@ class Multi(Parent):
         self.mpframe.button.config(bg=self.mpframe.button.colors[index])
 
 
-class Gradient(Parent):
+class Gradient(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
         self.orientation = Orientation(self)

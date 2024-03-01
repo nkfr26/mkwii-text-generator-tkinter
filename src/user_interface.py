@@ -10,7 +10,6 @@ from .feature.text_image_generator import TextImageGenerator
 class UserInterface(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
-        self.master = master
 
         # self.text.file_names
         self.text = Text(self)
