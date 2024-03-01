@@ -80,7 +80,7 @@ class Scale(tk.LabelFrame):
         self.config(text=f" {self.value.get() * 5} ")  # 輝度の表示 (5刻み)
         scale = ttk.Scale(
             self, orient=tk.HORIZONTAL, from_=-4, to=20,
-            variable=self.value, command=self.on_change, takefocus=False,
+            variable=self.value, command=self.on_change, takefocus=False
         )
         scale.pack(fill=tk.X, padx=5)
 
@@ -97,7 +97,7 @@ class Checkbutton(tk.LabelFrame):
         self.value = tk.BooleanVar()
         checkbutton = ttk.Checkbutton(
             self, text="White",
-            variable=self.value, command=self.on_change, takefocus=False,
+            variable=self.value, command=self.on_change, takefocus=False
         )
         checkbutton.place(x=0, y=1)
 
@@ -121,7 +121,7 @@ class Combobox(ttk.Combobox):
         self.config(
             justify="center", state="readonly",
             textvariable=self.value, takefocus=False,
-            values=("Yellow", "White", "Single Color", "Multi Color", "Gradient"),
+            values=("Yellow", "White", "Single Color", "Multi Color", "Gradient")
         )
         self.current(0)
         self.bind("<<ComboboxSelected>>", master.change_option)

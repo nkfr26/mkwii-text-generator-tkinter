@@ -44,7 +44,7 @@ class Menu(tk.Menu):
         Path("PNG").mkdir(exist_ok=True)
         path_name = filedialog.asksaveasfilename(
             initialdir="PNG", initialfile=datetime.date.today(),
-            defaultextension="", filetypes=[("PNG", "*.png")],
+            defaultextension="", filetypes=[("PNG", "*.png")]
         )
         if path_name:
             self.master.user_interface.PIL_MKWii_text.save(path_name)

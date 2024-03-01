@@ -2,7 +2,7 @@ import tkinter as tk
 
 from .opt.parts import (
     SPFrame, MPFrame, MCFrame,
-    Orientation, Mode, TPFrame, BPFrame,
+    Orientation, Mode, TPFrame, BPFrame
 )
 
 

@@ -4,7 +4,7 @@ from PIL import ImageTk
 
 from .ui.widget import Text, Scale, Checkbutton, Combobox
 from .ui.option import Single, Multi, Gradient
-from .feature.text_image_generator import TextImageGenerator
+from ..feature.text_image_generator import TextImageGenerator
 
 
 class UserInterface(tk.Frame):
@@ -45,7 +45,7 @@ class UserInterface(tk.Frame):
         option_mapping = {
             "Single Color": self.single,
             "Multi Color": self.multi if self.text.file_names else tk.Frame(self),
-            "Gradient": self.gradient,
+            "Gradient": self.gradient
         }
         self.option = option_mapping.get(self.combobox.value.get(), tk.Frame(self))
         self.option.grid(columnspan=2, sticky=tk.W)

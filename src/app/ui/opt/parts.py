@@ -67,12 +67,12 @@ class Orientation(tk.LabelFrame):
         self.value = tk.IntVar()
         vertical = tk.Radiobutton(
             self, value=0, text="Vertical",
-            variable=self.value, command=self.on_change, takefocus=False,
+            variable=self.value, command=self.on_change, takefocus=False
         )
         vertical.pack(anchor=tk.W)
         horizontal = tk.Radiobutton(
             self, value=1, text="Horizontal",
-            variable=self.value, command=self.on_change, takefocus=False,
+            variable=self.value, command=self.on_change, takefocus=False
         )
         horizontal.pack(anchor=tk.W)
 
@@ -95,12 +95,12 @@ class Mode(tk.LabelFrame):
         self.value = tk.IntVar()
         rgb = tk.Radiobutton(
             self, value=0, text="RGB",
-            variable=self.value, command=self.on_change, takefocus=False,
+            variable=self.value, command=self.on_change, takefocus=False
         )
         rgb.pack(anchor=tk.W)
         hsl = tk.Radiobutton(
             self, value=1, text="HSL",
-            variable=self.value, command=self.on_change, takefocus=False,
+            variable=self.value, command=self.on_change, takefocus=False
         )
         hsl.pack(anchor=tk.W)
 

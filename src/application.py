@@ -1,6 +1,6 @@
 import tkinter as tk
 
-from .user_interface import UserInterface
+from .app.user_interface import UserInterface
 from .app.menu import Menu
 from .app.sub import Sub
 
