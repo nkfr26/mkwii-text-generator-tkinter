@@ -34,12 +34,9 @@ class Menu(tk.Menu):
         bg.add_command(label="Change Color", command=self.change_bg_color)
         bg.add_checkbutton(label="Lock", variable=self.bg_lock)
 
-        master.bind("<Control-e>", self.export)
-        master.bind("<Control-o>", self.open_png_folder)
-
     def export(self, event=None):
         if not self.master.user_interface.text.file_names:
-            return
+            return None
 
         Path("PNG").mkdir(exist_ok=True)
         path_name = filedialog.asksaveasfilename(
@@ -65,7 +62,7 @@ class Menu(tk.Menu):
         subprocess.Popen(["C:/Windows/notepad.exe", "README/Japanese.txt"])
 
     def open_github(self):
-        webbrowser.open("https://github.com/NOKKY726/mkwii-text-generator-tkinter/")
+        webbrowser.open("https://github.com/nkfr26/mkwii-text-generator-tkinter/")
 
     def open_twitter(self):
-        webbrowser.open("https://twitter.com/nkfrom_mkw/")
+        webbrowser.open("https://twitter.com/nkfr26/")

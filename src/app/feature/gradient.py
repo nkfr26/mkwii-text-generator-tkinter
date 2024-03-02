@@ -24,7 +24,6 @@ def new(mode, size, color1, color2, orientation) -> Image:
 
     return im
 
-
 def calc_color(mode, position, color1, color2) -> tuple:
     if isinstance(color1, str):
         color1, color2 = [ImageColor.getrgb(item) for item in [color1, color2]]

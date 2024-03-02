@@ -4,7 +4,7 @@ from PIL import ImageTk
 
 from .ui.widget import Text, Scale, Checkbutton, Combobox
 from .ui.option import Single, Multi, Gradient
-from ..feature.text_image_generator import TextImageGenerator
+from .feature.text_image_generator import TextImageGenerator
 
 
 class UserInterface(tk.Frame):

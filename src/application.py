@@ -9,7 +9,6 @@ def main():
     application = Application()
     application.mainloop()
 
-
 class Application(tk.Tk):
     def __init__(self):
         super().__init__()
@@ -24,5 +23,8 @@ class Application(tk.Tk):
 
         self.sub = Sub(self)
         self.sub.adjust_position()
+
+        self.bind("<Control-e>", self.menu.export)
+        self.bind("<Control-o>", self.menu.open_png_folder)
         self.sub.bind("<Control-e>", self.menu.export)
         self.sub.bind("<Control-o>", self.menu.open_png_folder)

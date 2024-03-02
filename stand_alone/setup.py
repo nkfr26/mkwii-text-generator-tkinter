@@ -14,7 +14,7 @@ executables = [
     Executable(
         "src/__main__.py", base=base,
         target_name="MKWii Text Generator",
-        icon="stand_alone/favicon.ico",
+        icon="stand_alone/favicon.ico"
     )
 ]
 
@@ -22,5 +22,5 @@ setup(
     name="mkwii-text-generator-tkinter",
     version="1.3", description="",
     options={"build_exe": build_options},
-    executables=executables,
+    executables=executables
 )

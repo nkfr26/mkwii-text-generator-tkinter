@@ -1,5 +1,5 @@
 ■ MKWii Text Generator (v1.3)
-Developer: NOKKY (@nkfrom_mkw)
+Developer: NOKKY (@nkfr26)
 Special thanks to KZT and Paprika.
 
 
@@ -25,9 +25,9 @@ Special thanks to KZT and Paprika.
 
 ■ Description
 The characters that can be used are A-Z 1-9 : . + - /
-The second font is provided for 1-9 - / and can be used by enclosing them in double quotes ("").
+The second font is provided for 1-9 - / and can be used by enclosing them in double quotes (").
 Also, the space enclosed in double quotes is a quarter length of the normal space.
-Fine adjustment can be done with <> (> x 5 = " ")
+Fine adjustment can be done with <> (> x 5 = " ").
 
 
 ■ Input Example

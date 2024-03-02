@@ -20,7 +20,7 @@ if compiler == "c":
     subprocess.run([".venv/Scripts/python.exe", "setup.py", "build"])
     shutil.move("setup.py", "stand_alone")
 
-    for dir_name in Path("build/exe.win-amd64-3.10").iterdir():
+    for dir_name in Path("build/exe.win-amd64-3.11").iterdir():
         shutil.move(dir_name, "stand_alone/cx_Freeze")
 
     shutil.rmtree("build")
@@ -31,7 +31,7 @@ elif compiler == "n":
     subprocess.run([
         ".venv/Scripts/python.exe", "-m", "nuitka", "--mingw64", "--follow-imports",
         "--onefile", "--plugin-enable=tk-inter", "--windows-disable-console",
-        "--windows-icon-from-ico=stand_alone/favicon.ico", "src/__main__.py",
+        "--windows-icon-from-ico=stand_alone/favicon.ico", "src/__main__.py"
     ])
 
     Path("__main__.exe").rename("MKWii Text Generator.exe")
